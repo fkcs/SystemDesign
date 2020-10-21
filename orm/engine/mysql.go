@@ -6,11 +6,16 @@ import (
 	"log"
 )
 
+func init() {
+	name := "mysql"
+	Register(name, &Mysql{})
+}
+
 type Mysql struct {
 	db *sql.DB
 }
 
-func NewMysql(arg string) *Mysql {
+func (s *Mysql) NewDB(arg string) DB {
 	db, err := sql.Open("mysql", arg)
 	if err != nil {
 		fmt.Println(err)

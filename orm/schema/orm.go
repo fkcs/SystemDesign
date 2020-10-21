@@ -15,12 +15,10 @@ type ORM struct {
 }
 
 func NewORM(sqlEngine string, args string) *ORM {
-	orm := &ORM{
+	return &ORM{
 		sqlEngine: sqlEngine,
+		engine:    engine.Factory(sqlEngine, args), // 此处可以通过sqlEngine选择不同的数据库引擎，sqlite/mysql
 	}
-	// 此处可以通过sqlEngine选择不同的数据库引擎，sqlite/mysql
-	orm.engine = engine.Factory(sqlEngine, args)
-	return orm
 }
 
 // 获取schema，为下一步建表做准备

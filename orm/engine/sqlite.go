@@ -6,6 +6,10 @@ import (
 	"log"
 )
 
+func init() {
+
+}
+
 type SQLite struct {
 	db *sql.DB
 }
