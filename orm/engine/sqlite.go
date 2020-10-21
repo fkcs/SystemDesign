@@ -7,14 +7,15 @@ import (
 )
 
 func init() {
-
+	name := "sqlite"
+	Register(name, &SQLite{})
 }
 
 type SQLite struct {
 	db *sql.DB
 }
 
-func NewSQLite(arg string) *SQLite {
+func (s *SQLite) NewDB(arg string) DB {
 	db, err := sql.Open("sqlite3", arg)
 	if err != nil {
 		fmt.Println(err)
